@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIA7012 · Introducción a la IA en la Educación Sustentable</title>
+<meta name="description" content="VIA7012 - Doctorado en Ciencias de la Educación Virtual, Concentración en IA. Guía Didáctica interactiva de las 10 semanas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root { --biu-navy: #041448; --biu-navy-2: #0a1f5e; --biu-blue: #062b70; --biu-blue-light: #e8edf8; --biu-teal: #1bdab5; --biu-teal-2: #12b394; --biu-teal-light: #e6faf5; --biu-gold: #d9a441; --ok: #10b981; --warn: #f59e0b; --bad: #ef4444; --info: #3b82f6; --purp: #7c3aed; --surface: #fff; --surface-2: #f8fafc; --surface-3: #f1f5f9; --text-main: #0f172a; --text-muted: #475569; --border: #e2e8f0; --shadow-sm: 0 1px 2px 0 rgba(0,0,0,.05); --shadow-md: 0 4px 6px -1px rgba(0,0,0,.1); --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1); --shadow-glow: 0 0 20px rgba(27,218,181,.28); --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --transition: all .3s ease; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: Inter, sans-serif; background: rgb(238, 242, 249); color: var(--text-main); min-height: 100vh; line-height: 1.6; margin: 0px; position: relative; z-index: 0; }
+body::before { content: ""; position: fixed; top: -10%; right: -10%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(27, 218, 181, 0.16) 0%, transparent 60%); z-index: -1; pointer-events: none; filter: blur(40px); }
+body::after { content: ""; position: fixed; bottom: -10%; left: -10%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(4, 20, 72, 0.12) 0%, transparent 60%); z-index: -1; pointer-events: none; filter: blur(40px); }
+a { color: inherit; }
+.wrap { max-width: 1180px; margin: 0px auto; padding: 1.75rem 1.5rem 5rem; }
+.masthead { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, rgb(4, 20, 72) 0%, rgb(10, 42, 114) 55%, rgb(3, 16, 54) 100%); padding: 1.1rem 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+.masthead::before { content: ""; position: absolute; top: -50%; left: -10%; width: 50%; height: 200%; background: linear-gradient(135deg, rgba(27, 218, 181, 0.14), transparent 60%); pointer-events: none; transform: rotate(-15deg); }
+.masthead a.brand { text-decoration: none; cursor: pointer; }
+.brand { display: flex; align-items: center; gap: 1.15rem; z-index: 1; }
+.brand img { height: 48px; width: auto; display: block; }
+.brand-text { color: rgb(255, 255, 255); }
+.brand-text .u { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 600; color: var(--biu-teal); }
+.brand-text .name { font-size: 1.1rem; font-family: Fraunces, serif; font-weight: 500; }
+.masthead nav { display: flex; gap: 1.4rem; z-index: 1; }
+.masthead nav a { color: rgba(255, 255, 255, 0.78); text-decoration: none; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em; transition: var(--transition); cursor: pointer; }
+.masthead nav a:hover, .masthead nav a.on { color: rgb(255, 255, 255); }
+.meta { text-align: right; font-family: "JetBrains Mono", monospace; font-size: 0.66rem; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.6); text-transform: uppercase; z-index: 1; }
+.meta b { color: rgb(255, 255, 255); font-weight: 600; }
+.crumbs { display: flex; align-items: center; gap: 0.4rem; font-family: "JetBrains Mono", monospace; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-muted); margin-bottom: 1.1rem; flex-wrap: wrap; }
+.crumbs a { color: var(--biu-blue); text-decoration: none; cursor: pointer; }
+.crumbs a:hover { text-decoration: underline; }
+.crumbs .sep { opacity: 0.5; }
+.crumbs .here { color: var(--biu-navy); font-weight: 700; }
+.phase-wrap { background: rgb(255, 255, 255); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.4rem; margin-bottom: 1.75rem; box-shadow: var(--shadow-sm); overflow-x: auto; }
+.phase-steps { display: flex; gap: 3px; position: relative; min-width: 720px; }
+.pstep { flex: 1 1 0%; display: flex; flex-direction: column; align-items: center; gap: 5px; position: relative; z-index: 1; text-decoration: none; cursor: pointer; background: none; border: none; font-family: inherit; }
+.pdot { width: 26px; height: 26px; border-radius: 50%; background: var(--surface-3); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: "JetBrains Mono", monospace; font-size: 0.6rem; font-weight: 700; color: var(--text-muted); transition: var(--transition); }
+.pstep.done .pdot { background: var(--biu-teal); border-color: var(--biu-teal); color: var(--biu-navy); }
+.pstep.active .pdot { background: var(--biu-navy); border-color: var(--biu-navy); color: rgb(255, 255, 255); box-shadow: rgba(27, 218, 181, 0.35) 0px 0px 0px 3px; }
+.pname { font-size: 0.56rem; font-weight: 600; color: var(--text-muted); text-align: center; }
+.pstep.active .pname { color: var(--biu-navy); }
+.pstep.done .pname { color: var(--biu-teal-2); }
+.pstep:hover .pdot { border-color: var(--biu-navy); }
+.pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.pager a { flex: 1 1 0%; max-width: 280px; display: flex; flex-direction: column; gap: 0.15rem; padding: 0.9rem 1.2rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: rgb(255, 255, 255); text-decoration: none; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; }
+.pager a:hover { border-color: var(--biu-navy); transform: translateY(-2px); }
+.pager a.next { margin-left: auto; text-align: right; }
+.pager .plabel { font-family: "JetBrains Mono", monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--biu-teal-2); }
+.pager .ptitle { font-family: Fraunces, serif; color: var(--biu-navy); font-size: 1rem; }
+.pager .spacer { flex: 1 1 0%; }
+.eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-family: "JetBrains Mono", monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--biu-teal-2); margin-bottom: 1.1rem; font-weight: 600; }
+.eyebrow::before { content: ""; width: 2rem; height: 2px; background: var(--biu-teal); }
+h1.title { font-family: Fraunces, serif; font-weight: 400; font-size: 2.3rem; line-height: 1.1; margin: 0px 0px 0.9rem; color: var(--biu-navy); }
+h1.title em { font-style: italic; color: var(--biu-teal-2); }
+.subtitle { font-size: 1.02rem; color: var(--text-muted); max-width: 70ch; margin-bottom: 1.25rem; }
+.section-head { display: flex; align-items: center; gap: 1.25rem; margin: 2.25rem 0px 1.25rem; }
+.section-head h2 { font-family: Fraunces, serif; font-weight: 400; font-size: 1.55rem; margin: 0px; color: var(--biu-navy); }
+.section-head h3 { font-family: Fraunces, serif; font-weight: 500; font-size: 1.2rem; margin: 0px; color: var(--biu-navy); }
+.section-head .hr { flex: 1 1 0%; height: 1px; background: linear-gradient(90deg,var(--border),transparent); }
+.prose { font-size: 1rem; color: var(--text-muted); max-width: 82ch; margin-bottom: 1.25rem; }
+.prose:last-child { margin-bottom: 0px; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.1rem; }
+.card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm); }
+.card h3 { font-family: Fraunces, serif; font-size: 1.1rem; color: var(--biu-navy); margin: 0px 0px 0.5rem; }
+.card p { font-size: 0.9rem; color: var(--text-muted); margin: 0px; }
+.cover-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+.cchip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 0.35rem 0.8rem; font-size: 0.75rem; font-weight: 600; color: var(--biu-navy); box-shadow: var(--shadow-sm); }
+.cchip.sum { border-color: var(--biu-teal); color: rgb(4, 84, 63); background: var(--biu-teal-light); }
+.cchip.form { border-color: var(--info); color: rgb(30, 58, 138); background: rgb(239, 246, 255); }
+.cchip.group { border-color: var(--purp); color: rgb(76, 29, 149); background: rgb(245, 243, 255); }
+.btn { appearance: none; border-width: medium; border-style: none; border-color: currentcolor; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: 600; font-size: 0.88rem; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-family: Inter, sans-serif; text-decoration: none; }
+.btn-primary { background: var(--biu-navy); color: rgb(255, 255, 255); }
+.btn-primary:hover { background: var(--biu-blue); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-accent { background: var(--biu-teal); color: var(--biu-navy); }
+.btn-accent:hover { background: var(--biu-teal-2); color: rgb(255, 255, 255); box-shadow: var(--shadow-glow); transform: translateY(-2px); }
+.btn-outline { background: rgb(255, 255, 255); color: var(--biu-navy); border: 2px solid var(--biu-navy); }
+.btn-outline:hover { background: var(--biu-navy); color: rgb(255, 255, 255); }
+.btn-sm { padding: 0.45rem 1rem; font-size: 0.76rem; }
+.callout { background: var(--biu-teal-light); border-left: 4px solid var(--biu-teal); padding: 0.85rem 1.1rem; border-radius: 4px 8px 8px 4px; font-size: 0.92rem; color: rgb(4, 84, 63); margin-bottom: 1.5rem; }
+.callout-navy { background: var(--biu-blue-light); border-left-color: var(--biu-blue); color: rgb(10, 31, 94); }
+.callout-gold { background: #fbf3e3; border-left-color: var(--biu-gold); color: #6b4a10; }
+.activity { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.4rem; margin-bottom: 1rem; background: rgb(255, 255, 255); box-shadow: var(--shadow-sm); }
+.activity-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.activity-head h4 { font-family: Fraunces, serif; font-size: 1.05rem; color: var(--biu-navy); margin: 0px; }
+.points { font-family: "JetBrains Mono", monospace; font-weight: 700; color: var(--biu-navy); background: var(--surface-3); border-radius: 999px; padding: 0.25rem 0.8rem; font-size: 0.78rem; white-space: nowrap; }
+.rubric-ref { display: inline-flex; align-items: center; gap: .35rem; font-size: .78rem; font-weight: 600; color: var(--biu-blue); text-decoration: none; margin-top: .5rem; cursor: pointer; }
+.rubric-ref:hover { text-decoration: underline; }
+.biblio { list-style: none; margin: 0px; padding: 0px; }
+.biblio li { font-size: 0.9rem; color: var(--text-muted); padding: 0.6rem 0px; border-bottom: 1px solid var(--border); }
+.biblio li:last-child { border-bottom-width: medium; border-bottom-style: none; }
+.biblio a { color: var(--biu-blue); text-decoration: none; word-break: break-word; }
+.biblio a:hover { text-decoration: underline; }
+.timeline { display: flex; flex-direction: column; gap: 0.9rem; }
+.tl-item { display: grid; grid-template-columns: 52px 1fr auto; gap: 1.1rem; align-items: center; background: rgb(255, 255, 255); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.1rem 1.3rem; text-decoration: none; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; }
+.tl-item:hover { border-color: var(--biu-navy); transform: translateX(4px); }
+.tl-num { width: 52px; height: 52px; border-radius: 50%; background: var(--biu-navy); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
+.tl-item.has-grade .tl-num { background: var(--biu-teal); color: var(--biu-navy); }
+.tl-body .tl-chain { font-family: "JetBrains Mono", monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--biu-teal-2); margin-bottom: 0.2rem; }
+.tl-body .tl-title { font-family: Fraunces, serif; color: var(--biu-navy); font-size: 1.05rem; }
+.tl-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; }
+table.rubric { width: 100%; border-collapse: collapse; font-size: 0.86rem; margin-bottom: 1.5rem; background: rgb(255, 255, 255); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+table.rubric th, table.rubric td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.rubric th { font-family: "JetBrains Mono", monospace; font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); background: var(--surface-2); }
+.rubric-scroll { overflow-x: auto; border-radius: var(--radius-lg); margin-bottom: 1.25rem; }
+.rubric-scroll table.rubric { min-width: 980px; margin-bottom: 0; }
+.rubric-meta { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: .6rem 1.5rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.3rem; margin-bottom: 1rem; font-size: .85rem; }
+.rubric-meta b { color: var(--biu-navy); font-family: "JetBrains Mono", monospace; font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: .15rem; }
+.quicklinks { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.25rem; }
+.toc { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+.toc a { font-size: .78rem; font-weight: 600; color: var(--biu-navy); background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: .4rem .9rem; text-decoration: none; cursor: pointer; }
+.toc a:hover { border-color: var(--biu-navy); }
+.foot { text-align: center; margin-top: 3rem; font-family: "JetBrains Mono", monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.view { display: none; }
+.view.active { display: block; }
+@media (max-width: 820px) {
+  .masthead { flex-direction: column; gap: 0.9rem; align-items: flex-start; }
+  .masthead nav { flex-wrap: wrap; }
+  .meta { text-align: left; }
+  .tl-item { grid-template-columns: 40px 1fr; }
+  .tl-right { grid-column: 1 / -1; flex-direction: row; justify-content: flex-start; }
+  .pager { flex-direction: column; }
+  .pager a.next { margin-left: 0px; text-align: left; }
+  .rubric-meta { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div id="masthead-container"></div>
+  <div id="app"></div>
+</main>
+<div class="foot">VIA7012 · Doctorado en Ciencias de la Educación Virtual, Concentración en IA · BIU</div>
+
+<script>
+const LOGO_B64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAFeCAYAAADNK3caAAAgAElEQVR4nO3dB1QTWRsG4EnoTUAFuwFpIqiIiGDB3nvXdV3L2nVta1nXrqvrurquvfdV7A17FxUQEUERpBMRRcFKb8l/vgD+MTOhCYHA+5yTA9x7ZyYzJF9u7tzCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJQ8njJeY7FYzEoDgII78FnY/u/3IfPLyiXjMTyR9N98hsk6Udupr6W6bjqrcFGPwSs74U6VlQIA5V6KKEvrU1ZGx7J8nhlikTrDMMUWeMsSfnk8KQDIG1+mhlnW8KkOzDBl+jl+DwReAAAFQ+AFAFAwBF4AAAVD4AUAUDAEXgAABUPgBYAyiaecwwwKBIEXAMocXvYD3ckAAKB4IPACACgYAi8AgIIh8AIAKBgCLwCAgiHwAgAoGAIvAICCIfACACgYJkIHgOJRzAPNeOW4WojACwDFojiH+PJUxYxKumomo8bKKhcQeAEqIHExNjPyVBkm4xXDfLmUwTAqrOwiEDM8Po+ZWjllp56K6mcxL6vAz1UyzJgj/utp8hIZhlnEyiglCLwAFZCYKcYFY3kMI05jmDRhliQIfz+aokGFCficMVpdPYsRi79/ygYNVeYOK7EUIfACwPfjMQxPjSmmwJtTZS3GNl4tdV4SK7EUoVcDAICCIfACACiYUjY1PPQX1sjMylLocxeLGaZV03rRrIwK4v7jiDo8jpsWJXm99XQ0EhvXr/WRlQmg5JQy8PYYv+1aQlKaLSujZAk3Lx40adzgFpcVfb6l7c7DUNMuP2+9zTCMQJFPpaFlTTef03N6szIAlJxSNjWoqqhkshJLnoDP52WVwnFLHS+7qqvQoEtUVfml8X8GKHFKGXh5vPK7JAj8H4/h4f8M5RJurgEAKBgCLwCAgiHwAgAoGAIvAICCIfACACgYAi8AgIIh8AJAsVDgwEalh8ALAKBgCLwAAAqGwAsAoGCYCB2gAkoXi9SL9az5IkYkzmAYcXG09Ipz6oTFuEpGGYPAC1ABuWhXvaPC4/WVPnNxUeOcmoiJTuAL9milb6Dfv59YcqtOha/5HU+qbEPgBaiA7DQNPtppGpwrrjMPrCrSPqkr2kA13+IiEmcV79pwZQgCLwB8t+QURkfESy/PrQPFCjfXAOD7oRNvoSDwQpklZsR4fUK5hBc25EucfYNDqOgrJS6nN1YA0MYL+Wrb3CLyvuvM5oq+Ujpa6gmsRIByAIEXCqRZw7pvcaUAigeaGgAAFAyBFwBAwRB4AQAUDIEXAEDBEHgBABQMvRpKUZgwTjUxOV0vLT1Tk8akq6rwM7U01FJsLGokVtiLAlABIPAqgG9gdJWAkDcNg8Lf2j4Pe2MjjPkgePc+oVpyarpOWnqWlfRAARU+P1JbSy1JX0/rU61q+jH161ULtDGv8Zx+dmltHVSOLxNAhYHAW0L8X8QYHrvkO+yye2D3wLBYW4ZhBAU5UpZIZJqQlMbQ41XsJ+ah/9cBY0IjQ924Vg5m7oO62h0b0MXOm7VxCdpx7EEPRV9DI0Pdt/07N/ZhZcgojeemqa6WMrKf4y1WRjGgb0I3vUK6KPqc6tYwFHZzaRDAyoBih8BbzA6e9W6796TXeO+nQicKosW4d0Hcx0TBmev+Dmeu+w+ou+68sHf7hucmDWu10VxglMkqXYxuegZbTFtxcktBPzyKi5Wp8bX+nRvnGYDueoeZlsZzU1NVCR/Zz9GclVEMvPyjWkxbcfKCIs+HtGpa71A3lwY/sTKg2CHwFhMKuJv/c5/h/yLGTgFBQPDy9UfB5v/cXQ6e9R75Qy+HwxsWDFjDKlVMVFVUMhUd2BjJkGGNfIcM8/k8UWk8Nz0djc+sxGKipqpSoh+k8mhpqqfIyYJihl4N3+l56BvdflN2bxq30HW//4uYPooOAl8SUxttd70/uW7bxQ93n/DszCoAAGUOAu932Hnco5vL8A2el+4+n1oatS4pgrfxCY5Tlh3f2Wvijm2sXIASliUq29+ek9LEeqzEUoSmhkKQnqVw4uJjC/ed9hpbygFXluDa/RfdGnRfeXPjwoETO7awCmWVACgBVfWYuJ52KvPpPSIuQxW63PestjoveR0rt/Qg8BaCtpZaMpXuOnbb3tteIe3LWNDNJQh/GS8Y+Mset+3Lh44Z2sPeg1UCoJiZGfMzN/2osbosX9d1w1hJpQZNDYXw6s2nOp1Gb9lfhoPuVylpGVYj5x06UhpdrQAgb6jxFsKq7deOpKRlKM3zpQ+HnK5WzIQhLS+ycgGgVKDGWwhKFnRzCWatOr3h+OUnTqwcACgVCLwVQGaWyGzCoqN7n4W81q/o1wKgLEDgrSCSU9Oth87cf7KiXweAsgCBtwIJE8ZZjF/kuriiXweA0obAW7EIDpzxHuN2K8Cuol8IgNKEwFvxCOatPVeW+pIDVDgIvBVQ+Mt4sy2H3ftU9OsAUFoQeCsmwV+7bvxe0S8CQGlB4K2g3sYnVDtwxrt9Rb8OAKUBgbfiEmw6dHdGRb8IAIWFwFuxCU5f8x9U0S8CQEEh8FZwbxMSqh0449W+ol8HgIJC4AXBpkN3Z1T0awBQEAi8IHgb/6HagTNe7Sv6dQAoCARekLLh4N0ZFf0aAOQXAi/keBufUO3AGa/2Ff06AOQHAi9wErz4/9nk+X28g8jtNqCicPtBmDNrIwHfhZLAAiSDtiQnq6XvT3wBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA8olhmP8BNZ03CH1hi3kAAAAASUVORK5CYII=";
+
+const MAT_GLOBAL = [
+  {l:"Tutor IA Educativa BIU VIA7012 (GPT)", u:"https://chatgpt.com/g/g-6971256a97d08191865959ecc32a16f8-copiloto-gpt-biu-via7012-arsenio-perez"},
+  {l:"Maestro Doctoral en IA y Educación (GPT)", u:"https://chatgpt.com/g/g-69e4f693568081919e36c0d231f4bf68-maestro-doctoral-en-ia-y-educacion"},
+  {l:"Diálogos con EPISTON (GPT)", u:"https://chatgpt.com/g/g-67eeb312c7248191bd1cb8c9c24440af-ephiston"},
+  {l:"Biblioteca BIU", u:"https://oncampus.biu.us/biblioteca"}
+];
+
+const WEEKS = [
+{
+  no:1, chip:"Foro de apertura", chipPoints:"3%", grade:true,
+  title:"Fundamentos de la IA y Marco Epistemológico para la Investigación Doctoral en IA Educativa",
+  description:"Recorrido por la historia, el potencial y las definiciones contextuales de la Inteligencia Artificial, y por los marcos epistemológicos (positivismo, constructivismo, pragmatismo crítico) para investigar la IA en educación. Se abre la pregunta ontológica: ¿puede una máquina conocer? y la axiológica: ¿qué valores sostiene la IA en una educación sustentable?",
+  contenidos:[
+    "Historia desde el pasado hasta el posible futuro de la IA",
+    "Potencial de la IA en diferentes dominios de conocimiento",
+    "Definiciones contextuales de la IA según tipos, funciones, enfoque y capacidad de aprendizaje",
+    "Fundamentos de la IA desde la filosofía, matemática, economía, neurociencia, ingeniería computacional, lingüística",
+    "Marcos epistemológicos para investigar la IA en educación: positivismo, constructivismo, pragmatismo crítico",
+    "Ontología de los sistemas de IA: ¿puede una máquina conocer? Axiología de la IA en educación sustentable"
+  ],
+  slos:[
+    "Caracterizar la Inteligencia Artificial desde el pasado hasta el posible futuro según sus diferentes tipos, funciones, enfoque y capacidad de aprendizaje.",
+    "Describir los fundamentos de la IA desde diferentes disciplinas (filosofía, matemática, economía, neurociencia, psicología, ingeniería computacional, cibernética, lingüística).",
+    "Analizar críticamente los fundamentos epistemológicos de la IA desde al menos dos tradiciones filosóficas, articulando su impacto en la investigación educativa.",
+    "Formular una posición epistemológica propia sobre cómo investigar la IA en contextos educativos sustentables."
+  ],
+  materialesExtra:[],
+  bibliografia:[
+    "Russell, S. J., & Norvig, P. (2021). Inteligencia artificial: un enfoque moderno (4ª ed.). Pearson.",
+    "UNESCO. (2023). Inteligencia artificial y educación: guía para las personas a cargo de formular políticas. París: UNESCO.",
+    "UNESCO. (2023). Guidance for generative AI in education and research. UNESCO.",
+    "OECD. (2023). OECD Digital Education Outlook 2023.",
+    "Hamdi, M. (2024). How AI is transforming and shaping the future of education. IEEE INES.",
+    "Luckin, R. (2018). Machine Learning and Human Intelligence. UCL Press.",
+    "Selwyn, N. (2019). Should Robots Replace Teachers? Polity Press.",
+    "Popenici, S. & Kerr, S. (2017). Exploring the impact of AI on higher education. Research and Practice in Technology Enhanced Learning, 12(22)."
+  ],
+  actividades:[
+    {n:"Foro #1 · Presentación, Socialización y Expectativas de IA", tipo:"Sumativa", modo:"Individual", pts:"3%",
+     d:"Presentación personal ejecutiva: quién es, estudios realizados, desempeño laboral actual. Debe incorporar un apartado explícito con la etiqueta «Expectativas»: qué expectativas relacionadas con la IA espera del curso, alineadas a su profesión. Nota: lo indicado en «expectativas» debe ser referenciado luego en la Asignación #2 (Portafolio Reflexivo Doctoral). Cierra Semana 1.", rub:null},
+    {n:"Abre Foro Doctoral #2 · Posicionamiento Epistemológico ante la IA en Educación", tipo:"Sumativa", modo:"Individual", pts:"5% (cierra Sem. 2)",
+     d:"Redactar una posición argumentada (mínimo 800 palabras) sobre: (1) ¿Desde qué paradigma epistemológico investigaría usted la IA en educación y por qué? (2) ¿Es la IA una extensión de la mente humana o una nueva forma de conocimiento autónomo? (3) Analice críticamente hasta qué punto la IA en educación contribuye o dificulta el cumplimiento de los ODS 4, 10 y 16. Mínimo 5 referencias APA 7ª ed. Se espera 1 posición inicial y 2 comentarios críticos a compañeros.", rub:"r1"}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas de lectura.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas de lectura."
+},
+{
+  no:2, chip:"Cierre Foro Epistemológico", chipPoints:"5%", grade:true,
+  title:"Fundamentos de ML/DL + Learning Analytics como Campo de Investigación en Educación",
+  description:"Inteligencia artificial, aprendizaje automático y aprendizaje profundo; aprendizaje supervisado, no supervisado y de refuerzo; algoritmos de clasificación y regresión. Learning Analytics y Educational Data Mining como campos de investigación (Siemens, 2013; Baker & Inventado, 2014): diseño de estudios empíricos con datos educativos. [ODS 4] Analítica para retención estudiantil, alertas tempranas y personalización con equidad; ética del uso de datos estudiantiles.",
+  contenidos:[
+    "Inteligencia artificial, aprendizaje automático y aprendizaje profundo",
+    "Aprendizaje supervisado, no supervisado y de refuerzo",
+    "Algoritmos de Clasificación: árboles de decisión, SVM, KNN",
+    "Algoritmos de Regresión: Lineal, Múltiple, Logística",
+    "Ventajas del aprendizaje automático clásico",
+    "Learning Analytics y Educational Data Mining: estado del arte (Siemens, 2013; Baker & Inventado, 2014)",
+    "[ODS 4] Analítica para retención estudiantil, alertas tempranas, personalización con equidad. Ética del uso de datos estudiantiles"
+  ],
+  slos:[
+    "Comprender los fundamentos del aprendizaje automático y aprendizaje profundo.",
+    "Diferenciar los algoritmos del aprendizaje automático clásico y el aprendizaje profundo en la resolución de problemas.",
+    "Descubrir las potencialidades de la IAG multimodal.",
+    "Diseñar un protocolo de investigación preliminar para un estudio basado en Learning Analytics que aborde un problema educativo real, considerando implicaciones éticas y de sustentabilidad."
+  ],
+  materialesExtra:[
+    {l:"Machine Learning for Everyone (sitio web)", u:"https://vas3k.com/blog/machine_learning/"},
+    {l:"Deep Learning.AI (en español)", u:"https://www.deeplearning.ai/"},
+    {l:"Alignment Podcast · Machine Learning in Education", u:"https://futureoflife.org/guest-post/the-impact-of-ai-in-education-navigating-the-imminent-future/"}
+  ],
+  bibliografia:[
+    "Chollet, F. (2017). Deep learning with Python. Manning Publications.",
+    "UNESCO. (2023). Inteligencia artificial y educación: guía para las personas a cargo de formular políticas. París: UNESCO."
+  ],
+  actividades:[
+    {n:"Cierre Foro Doctoral #2 · Posicionamiento Epistemológico", tipo:"Sumativa", modo:"Individual", pts:"5%",
+     d:"Cierre y evaluación según Rúbrica R1-FTP Doctoral. Las participaciones tardías se evalúan al 60% del valor original.", rub:"r1"},
+    {n:"Asignación #0 · Conformación de Equipos de Proyectos", tipo:"Formativa", modo:"Equipo", pts:"0%",
+     d:"Los estudiantes se conforman en equipos de 3 a 6 integrantes para el Proyecto #1, Proyecto #2 y Proyecto #3. Fecha de entrega: Semana 2.", rub:null},
+    {n:"Notificación · Práctica Orange #1 (Formativa)", tipo:"Formativa", modo:"Individual", pts:"0%",
+     d:"Flujo de trabajo de visualización y preprocesamiento de datos. Descargar e instalar Orange (orangedatamining.com). Ver Video V1 (instalación y vista general) y Video V2 (primeros pasos). Cargar Simple_Data.csv y reproducir los flujos de visualización y preprocesamiento del Video V3. Guardar el archivo .ows y mostrarlo en el Chat Semanal. Revisión formativa.", rub:null}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas."
+},
+{
+  no:3, chip:"Ciencia de Datos con Orange", chipPoints:"Formativa", grade:false,
+  title:"Ciencia de Datos Educativos: Análisis con Orange + Metodología de Investigación",
+  description:"Configuración de un entorno Open Source de análisis de datos con Orange; el proceso de la Ciencia de Datos y la IA; métodos para importar, explorar, visualizar, imputar valores perdidos, detectar atípicos y normalizar datos; enmarcado (framing) de un problema de Machine Learning; analítica de aprendizaje aplicada a la lectura crítica de reportes educativos. [ODS 4 + ODS 9] Analítica aplicada a mejora institucional e innovación educativa sustentable.",
+  contenidos:[
+    "Configuración de entorno de trabajo Open Source para análisis de datos con Orange",
+    "El proceso de la Ciencia de Datos y la Inteligencia Artificial",
+    "Métodos para importar, explorar, visualizar, imputar valores perdidos, detectar atípicos y normalizar datos",
+    "Enmarcado (framing) de un problema de Aprendizaje Automático (ML)",
+    "Analítica de Aprendizaje: análisis de reportes educativos, lectura crítica de gráficos y tablas",
+    "[ODS 4 + ODS 9] Analítica aplicada a mejora institucional e innovación educativa sustentable"
+  ],
+  slos:[
+    "Configurar un entorno Open Source para análisis de datos de ML.",
+    "Identificar el proceso de la Ciencia de Datos y la IA.",
+    "Aplicar métodos y herramientas de preprocesamiento de datos.",
+    "Comprender el enmarcado (framing) de un problema de ML.",
+    "Desarrollar capacidades de analítica educativa."
+  ],
+  materialesExtra:[
+    {l:"SciSpace", u:"https://scispace.com/"},
+    {l:"NotebookLM", u:"https://notebooklm.google.com/"},
+    {l:"Formación SUJIS · Analítica de Aprendizaje Inteligente (Hs-Edu-004)", u:"https://learn.biu.us/ultra/courses/_170740_1/cl/outline"},
+    {l:"Orange Data Mining", u:"https://orangedatamining.com/"},
+    {l:"Documentación de Orange", u:"https://docs.orange.biolab.si/"},
+    {l:"Google ML Problem Framing", u:"https://developers.google.com/machine-learning/problem-framing?hl=es-419"}
+  ],
+  bibliografia:[
+    "Klippa. Qué es la preparación de datos. https://www.klippa.com/es/blog/informativo/que-es-preparacion-datos/",
+    "Google. Reglas de Machine Learning. https://developers.google.com/machine-learning/guides/rules-of-ml?hl=es-419"
+  ],
+  actividades:[
+    {n:"Abre Foro Doctoral #3 · Revisión Crítica de Literatura sobre Learning Analytics", tipo:"Sumativa", modo:"Individual", pts:"5% (cierra Sem. 4)",
+     d:"Seleccionar 3 artículos científicos (2020-2026) sobre Learning Analytics en educación superior. Elaborar una síntesis crítica de 1000 palabras mínimo que identifique convergencias, divergencias y brechas de investigación. Mínimo 5 referencias APA 7ª ed. Las participaciones tardías se evalúan al 60% del valor original hasta una semana después del cierre.", rub:"r1"},
+    {n:"Envío Asignación #1 · Microcertificación SUJIS: Analítica de Aprendizaje Inteligente", tipo:"Sumativa", modo:"Individual", pts:"6% (entrega Sem. 4)",
+     d:"Tomar la microcertificación SUJIS (Hs-Edu-004) en la plataforma indicada.", rub:null},
+    {n:"Envío Proyecto #1 Doctoral · Estudio Empírico de Machine Learning Aplicado a Educación", tipo:"Sumativa", modo:"Equipo", pts:"22% (entrega Sem. 6)",
+     d:"Fase A — Modelado ML (Definir, Set de Datos, Transformar, Entrenar, Validar, Predecir) en Orange. Fase B — Componentes doctorales: (a) pregunta de investigación justificada; (b) revisión de literatura (mín. 8 fuentes); (c) marco metodológico explícito; (d) análisis e interpretación con discusión teórica; (e) limitaciones y líneas futuras; (f) análisis de equidad y sesgo (ODS 4, 10); (g) reflexión ética sobre la selección automática de variables. Entregables: informe en PDF (formato artículo académico), set de datos y archivo .ows de Orange.", rub:"r6d"}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas."
+},
+{
+  no:4, chip:"Sesgo Algorítmico + SUJIS", chipPoints:"11%", grade:true,
+  title:"Algoritmos ML: Selección de Variables, PCA, Regresión/Clasificación + Sesgo Algorítmico",
+  description:"Herramientas para selección de variables (matrices de correlación, diagrama de tamiz, dispersión, proyección lineal); estadísticas de conjuntos de datos; Análisis de Componentes Principales (PCA); métricas de rendimiento (Matriz de Confusión, AUC-ROC). Sesgo algorítmico en educación: detección, medición y mitigación; fairness en modelos predictivos de rendimiento académico. [ODS 10] Análisis crítico de casos documentados de sesgo en sistemas educativos de IA.",
+  contenidos:[
+    "Herramientas para selección de variables y atributos (matrices de correlación, diagrama de tamiz, dispersión, proyección lineal)",
+    "Estadísticas de características de conjuntos de datos",
+    "Análisis de Componentes Principales (PCA)",
+    "Métricas de rendimiento: Matriz de Confusión, AUC-ROC",
+    "Modelado y Predicción",
+    "Sesgo algorítmico en educación: detección, medición y mitigación. Fairness en modelos predictivos",
+    "[ODS 10] Análisis crítico de casos documentados de sesgo en sistemas educativos de IA"
+  ],
+  slos:[
+    "Aplicar herramientas para selección de variables y atributos en ML.",
+    "Seleccionar atributos mediante PCA.",
+    "Evaluar el rendimiento de modelos de ML: métricas de la matriz de confusión, AUC-ROC.",
+    "Modelar y predecir tendencias basadas en datos.",
+    "Evaluar críticamente modelos ML educativos desde la perspectiva de equidad, detectando sesgos potenciales y proponiendo estrategias de mitigación."
+  ],
+  materialesExtra:[
+    {l:"Video V4 · Selección de variables y atributos (1era parte)", u:"https://youtu.be/SrM2RxwhSR8"},
+    {l:"Video V5 · PCA en regresión múltiple (2da parte)", u:"https://youtu.be/UCkPQ9cUapg"},
+    {l:"Video V6 · Técnicas de Clasificación (3era parte)", u:"https://youtu.be/hpfH9oF1BjA"},
+    {l:"Formación SUJIS · Analítica de Aprendizaje Inteligente", u:"https://learn.biu.us/ultra/courses/_170740_1/cl/outline"}
+  ],
+  bibliografia:[
+    "Cielen, D., Meysman, A. D. B., & Ali, M. (2016). Presentamos la ciencia de datos: big data, aprendizaje automático y más, utilizando herramientas de Python. Manning Publications.",
+    "Contreras Bravo, L. E., Fuentes López, H. J., & Rivas Trujillo, E. (2023). Análisis del rendimiento académico mediante técnicas de aprendizaje automático con métodos de ensamble. Revista de Investigación Educativa, 12(1), 1-15."
+  ],
+  actividades:[
+    {n:"Cierre Foro Doctoral #3 · Revisión Crítica de Literatura sobre Learning Analytics", tipo:"Sumativa", modo:"Individual", pts:"5%",
+     d:"Cierre y evaluación según Rúbrica R1-FTP Doctoral. Las participaciones tardías se evalúan al 60% del valor original.", rub:"r1"},
+    {n:"Recepción Asignación #1 · Microcertificación SUJIS Analítica de Aprendizaje Inteligente", tipo:"Sumativa", modo:"Individual", pts:"6%",
+     d:"Cargar el certificado SUJIS en la plataforma.", rub:null},
+    {n:"Notificación · Práctica Orange #2 (Formativa)", tipo:"Formativa", modo:"Individual", pts:"0%",
+     d:"Reproducir el flujo de trabajo de selección de variables y atributos con Reg-Lineal-Dataset. Casos de uso: regresión/clasificación. Guardar el .ows y mostrarlo en el Chat Semanal.", rub:null}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas."
+},
+{
+  no:5, chip:"Entrenamiento de Modelos ML/DL", chipPoints:"Formativa", grade:false,
+  title:"Entrenamiento y Evaluación de Modelos ML/DL + Transparencia e Interpretabilidad (XAI)",
+  description:"Árboles de Decisión, Bosques Aleatorios y Máquinas de Soporte Vectorial (SVM); Redes Neuronales; uso de LLMs en el entrenamiento y validación de modelos. Explicabilidad de modelos (XAI): LIME, SHAP; interpretabilidad vs. rendimiento en contextos educativos de alto impacto. [ODS 16] Gobernanza de algoritmos educativos, trazabilidad de decisiones automatizadas y transparencia en sistemas de IA.",
+  contenidos:[
+    "Árboles de Decisión y Bosques Aleatorios",
+    "Máquinas de Soporte Vectorial (SVM)",
+    "Redes Neuronales",
+    "Uso de LLMs en el entrenamiento y validación de modelos de IA",
+    "Explicabilidad de modelos (XAI): LIME, SHAP. Interpretabilidad vs. rendimiento en contextos educativos de alto impacto",
+    "[ODS 16] Gobernanza de algoritmos educativos. Trazabilidad de decisiones automatizadas. Transparencia en sistemas de IA"
+  ],
+  slos:[
+    "Ejercitar modelos de clasificación y selección de hiperparámetros en Árboles de Decisión, SVM, Random Forest y Redes Neuronales.",
+    "Explorar las técnicas de clasificación y agrupamiento.",
+    "Comparar el rendimiento de diferentes técnicas.",
+    "Argumentar críticamente sobre la tensión entre rendimiento predictivo e interpretabilidad en sistemas de IA educativos, proponiendo criterios de gobernanza algorítmica."
+  ],
+  materialesExtra:[
+    {l:"Video V7 · Árboles de Decisión, SVM, Random Forest (1era parte)", u:"https://youtu.be/-He_l_zzDWk"},
+    {l:"Video V8 · Árboles de Decisión, SVM, Random Forest (2da parte)", u:"https://youtu.be/1126idwlZwI"},
+    {l:"Video V9 · Introducción a las Redes Neuronales", u:"https://www.youtube.com/watch?v=mtJr1uV4WJQ"}
+  ],
+  bibliografia:[
+    "Francois, C. (2021). Aprendizaje profundo con Python (2ª ed.). Manning Publications.",
+    "Schmidhuber, J. (2015). Deep learning in neural networks: An overview. Neural Networks, 61, 85-117. https://doi.org/10.1016/j.neunet.2014.09.003"
+  ],
+  actividades:[
+    {n:"Notificación · Práctica Orange #3 (Formativa)", tipo:"Formativa", modo:"Individual", pts:"0% (revisión Chat Sem. 6)",
+     d:"Flujo de trabajo: modelo de Árboles de Decisión, SVM, Random Forest y Redes Neuronales con el set Aprobados-Si-No.csv (Videos V7, V8, V9). Guardar el .ows y consultarlo en los chats semanales. Nota: se sugiere apoyarse en la Rúbrica R4 de Evaluación de Flujo de Trabajo ML para esta práctica formativa.", rub:null}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas."
+},
+{
+  no:6, chip:"Proyecto #1 · Estudio ML", chipPoints:"22%", grade:true,
+  title:"IA Generativa, NLP, LLMs – Evaluación Crítica y Fronteras de Investigación",
+  description:"Procesamiento del Lenguaje Natural (NLP); Grandes Modelos Lingüísticos (LLMs); Inteligencia Artificial Generativa (IAG); ingeniería de prompts en casos de uso educativo. Evaluación sistemática de LLMs: factualidad, alucinaciones, sesgos, privacidad y seguridad. Arquitecturas emergentes: RAG, agentes de IA, tutores generativos y evaluación asistida.",
+  contenidos:[
+    "Procesamiento del Lenguaje Natural (NLP)",
+    "Grandes Modelos Lingüísticos (LLMs)",
+    "Inteligencia Artificial Generativa (IAG)",
+    "Ingeniería de Prompts en Casos de Uso en Educación",
+    "Evaluación sistemática de LLMs: factualidad, alucinaciones, sesgos, privacidad, seguridad",
+    "Arquitecturas emergentes: RAG (Retrieval-Augmented Generation), agentes de IA, tutores generativos, evaluación asistida"
+  ],
+  slos:[
+    "Analizar las etapas del NLP desde la tokenización hasta la generación de texto.",
+    "Describir cómo funciona la IA generativa con los LLMs y la ingeniería de prompts.",
+    "Evaluar el impacto de la IAG en la Educación.",
+    "Diseñar un protocolo de evaluación de un LLM educativo que contemple factualidad, sesgo, privacidad y alineación con el ODS 4."
+  ],
+  materialesExtra:[
+    {l:"The Illustrated Transformer (Jay Alammar)", u:"https://jalammar.github.io/illustrated-transformer/"}
+  ],
+  bibliografia:[
+    "Brousseau, C., & Shar, M. (2024). LLM en producción: de modelos de lenguaje a productos exitosos. Manning Publications.",
+    "Russell, S. J., & Norvig, P. (2021). Artificial Intelligence: A Modern Approach (4th ed.). Pearson Education.",
+    "UNESCO. (2023). La IA generativa y el futuro de la educación. UNESCO Digital Library.",
+    "UNESCO. (2023). Guidance for generative AI in education and research. https://doi.org/10.54675/EWZM9535"
+  ],
+  actividades:[
+    {n:"Recepción Proyecto #1 Doctoral · Estudio Empírico de ML en Educación (Equipo)", tipo:"Sumativa", modo:"Equipo", pts:"22%",
+     d:"Entrega obligatoria de los 3 archivos: informe en PDF, set de datos y archivo .ows de Orange.", rub:"r6d"}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas."
+},
+{
+  no:7, chip:"Diseño Instruccional + DBR", chipPoints:"Formativa", grade:false,
+  title:"Diseño Instruccional con LLMs + Proyecto #2: Intervención Educativa bajo Design-Based Research",
+  description:"Chatbots e ingeniería de prompts de la IAG en educación; casos de uso de creación de planes de clase con IA; desarrollo de chatbots educativos (ChatGPT API, Poe, Botpress); microtaller de creación de GEMS en Google Gemini. Metodología Design-Based Research (DBR) para intervenciones educativas con IA: ciclos de diseño, implementación, evaluación e iteración.",
+  contenidos:[
+    "Chatbots e Ingeniería de Prompts de la IAG en Educación",
+    "Casos de Uso: Creación de planes de clase con IA",
+    "Ejemplos de prompts para diseño instruccional",
+    "Desarrollo de Chatbots educativos (ChatGPT API, Poe, Botpress)",
+    "Repercusión de la IA generativa en la Educación",
+    "MicroTaller: Creación de GEMS en Google Gemini",
+    "Metodología Design-Based Research (DBR): ciclos de diseño, implementación, evaluación e iteración"
+  ],
+  slos:[
+    "Diseñar prompts que generen resultados específicos usando LLMs (GPT, Gemini, Copilot, Claude, Mistral).",
+    "Analizar el impacto de los LLMs en la personalización del aprendizaje.",
+    "Comparar características de modelos GPT-4, Gemini, Claude, Mistral, DeepSeek para educación.",
+    "Explorar casos de uso de chatbots y LLMs en entornos educativos.",
+    "Aplicar la metodología Design-Based Research para diseñar, implementar y evaluar una intervención educativa basada en IA."
+  ],
+  materialesExtra:[
+    {l:"Introducción a Prompt Engineering", u:"https://platform.claude.com/docs/es/build-with-claude/prompt-engineering/overview"},
+    {l:"Modelos de Lenguaje Grande (LLM): guía completa", u:"https://es.shaip.com/blog/a-guide-large-language-model-llm/"},
+    {l:"Google AI · Ingeniería de prompts", u:"https://developers.google.com/machine-learning/resources/prompt-eng?hl=es-419"},
+    {l:"Microsoft AI · Ingeniería de prompts", u:"https://learn.microsoft.com/es-es/azure/ai-services/openai/concepts/prompt-engineering"}
+  ],
+  bibliografia:[
+    "UNESCO. (2023). La IA generativa y el futuro de la educación.",
+    "UNESCO IESALC. (2023). Guía para docentes sobre IA generativa.",
+    "World Economic Forum / UNESCO. (2023, septiembre). Generative AI has disrupted education. Here's how it can be used for good."
+  ],
+  actividades:[
+    {n:"Envío Proyecto #2 Doctoral · Intervención Educativa con IA bajo Design-Based Research (Equipo)", tipo:"Sumativa", modo:"Equipo", pts:"20% (entrega Sem. 8)",
+     d:"En equipo: (a) identificar un problema educativo real del contexto profesional; (b) diseñar una intervención que integre al menos 3 herramientas de IAG; (c) aplicar el ciclo DBR completo (Análisis → Diseño → Implementación piloto → Evaluación → Rediseño); (d) documentar en formato de artículo académico; (e) incluir análisis de sustentabilidad (ODS 4, 10, 16); (f) para cada herramienta IAG, incluir el prompt final optimizado y su justificación pedagógica.", rub:"r5d"}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas."
+},
+{
+  no:8, chip:"Proyecto #2 · Intervención DBR", chipPoints:"20%", grade:true,
+  title:"IA Emocional y Multimodal + Affective Computing como Campo de Investigación",
+  description:"Introducción a la IA emocional (reconocimiento de emociones); herramientas de IA multimodal (texto, voz, video); aplicaciones prácticas en entornos educativos. Affective computing con enfoque ético; Multimodal Learning Analytics: captura y análisis de señales multimodales; consentimiento y protección de datos emocionales.",
+  contenidos:[
+    "Introducción a la IA emocional (reconocimiento de emociones)",
+    "Herramientas IA multimodal (texto, voz, video)",
+    "Aplicaciones prácticas en entornos educativos",
+    "Affective computing con enfoque ético. Multimodal Learning Analytics",
+    "Consentimiento y protección de datos emocionales"
+  ],
+  slos:[
+    "Explicar los fundamentos de la IA emocional y su relevancia educativa.",
+    "Analizar cómo los sistemas de IA reconocen y responden a emociones en contextos educativos.",
+    "Explorar herramientas de IA multimodal (texto, voz, video) para enseñanza y aprendizaje.",
+    "Evaluar la precisión y efectividad de tecnologías de reconocimiento emocional.",
+    "Diseñar un protocolo de investigación para evaluar el impacto de un asistente pedagógico emocional, incluyendo consideraciones éticas y de consentimiento informado."
+  ],
+  materialesExtra:[
+    {l:"HeyGen · IA emocional aplicada en educación", u:"https://www.heygen.com/"},
+    {l:"Emotion AI Podcast", u:"https://open.spotify.com/episode/0CWxMONpdrKDkm4BOWnRB7"},
+    {l:"AI emotions and synthesizing empathy (video)", u:"https://youtu.be/WsT8LncSdog"},
+    {l:"Synthesia", u:"https://www.synthesia.io/es"}
+  ],
+  bibliografia:[
+    "Grafsgaard, J. F., Wiggins, J. B., Boyer, K. E., Wiebe, E. N., & Lester, J. C. (2014). Multimodal affect recognition in learning environments. Proceedings of the 16th International Conference on Multimodal Interaction, 209-216. https://doi.org/10.1145/2663204.2663266",
+    "Zhang, X., Wang, Y., & Li, H. (2025). Affective computing in online higher education: A systematic review. Applied Computing and Informatics.",
+    "Schmidhuber, J. (2015). Deep learning in neural networks: An overview. Neural Networks, 61, 85-117."
+  ],
+  actividades:[
+    {n:"Recepción Proyecto #2 Doctoral · Intervención Educativa con IA bajo DBR (Equipo)", tipo:"Sumativa", modo:"Equipo", pts:"20%",
+     d:"Entrega del informe en formato artículo académico, cargado en la plataforma.", rub:"r5d"},
+    {n:"Envío Proyecto #3 Doctoral · Asistente Pedagógico Emocional Conversacional (Equipo)", tipo:"Sumativa", modo:"Equipo", pts:"22% (entrega Sem. 10)",
+     d:"Diseñar un asistente pedagógico virtual con análisis de sentimientos para detectar el estado emocional y acompañar a estudiantes con ansiedad académica (se recomienda Google Gemini GEMS u otra herramienta No-Code). Artículo académico con: (a) título y justificación; (b) revisión de literatura sobre affective computing (mín. 10 fuentes); (c) marco teórico del reconocimiento emocional aplicado; (d) descripción técnica del chatbot (System Prompt y base de conocimiento); (e) protocolo de prueba con usuarios reales (mín. 3 sesiones documentadas); (f) análisis de resultados; (g) fases del ciclo DBR; (h) discusión ética profunda (consentimiento, privacidad emocional, límites de la IA afectiva); (i) nota reflexiva sobre precisión científica vs. especulación tecnológica.", rub:"r7d"}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas."
+},
+{
+  no:9, chip:"Gobernanza + Portafolio", chipPoints:"Formativa", grade:false,
+  title:"Gobernanza, Ética y Sustentabilidad en Inteligencia Artificial",
+  description:"Pilares de la ética de la IA; implicaciones para la privacidad, seguridad, equidad e inclusión; sistemas de IA fiables. Marco regulatorio internacional (EU AI Act, recomendaciones UNESCO/OECD); gobernanza institucional de IA educativa; políticas de uso responsable. [ODS 4, 10, 16] Síntesis transversal: cómo cada ODS se articula con los proyectos del curso.",
+  contenidos:[
+    "Pilares de la Ética de la IA",
+    "Implicaciones para la privacidad, seguridad, equidad e inclusión",
+    "Sistemas de IA Fiables",
+    "Marco regulatorio internacional: EU AI Act, recomendaciones UNESCO/OECD",
+    "Gobernanza institucional de IA educativa. Políticas de uso responsable",
+    "[ODS 4, 10, 16] Síntesis transversal: cómo cada ODS se articula con los proyectos del curso"
+  ],
+  slos:[
+    "Analizar los dilemas éticos y legales específicos del uso de la IA.",
+    "Evaluar las implicaciones de la IA para la privacidad, seguridad, equidad e inclusión.",
+    "Proponer soluciones éticas y legales para los desafíos planteados por la IA.",
+    "Diseñar un marco de gobernanza para el uso de IA en una institución educativa, integrando regulación vigente, principios éticos y ODS."
+  ],
+  materialesExtra:[
+    {l:"OECD.AI", u:"https://oecd.ai/en/"},
+    {l:"UNESCO · Ética de la IA", u:"https://es.unesco.org/artificial-intelligence/ethics"}
+  ],
+  bibliografia:[
+    "UNESCO. (2021). Recomendación sobre la ética de la inteligencia artificial. París.",
+    "OECD. (2023). Gobernanza de GenAI en educación.",
+    "EY. (2023). El entorno regulatorio global de la Inteligencia Artificial: tendencias y consideraciones normativas para reforzar la confianza en la IA [Resumen ejecutivo].",
+    "Instituto para el Futuro de la Educación. (2024, 12 de febrero). Principios éticos de la educación con Inteligencia Artificial. Observatorio TEC."
+  ],
+  actividades:[
+    {n:"Abre Foro Doctoral #4 · Posición Doctoral sobre Gobernanza de IA Educativa", tipo:"Sumativa", modo:"Individual", pts:"5% (cierra Sem. 10)",
+     d:"Ensayo argumentativo (mínimo 1500 palabras) que proponga un marco de gobernanza para el uso de IA en una institución educativa del contexto del estudiante. Debe integrar: análisis de la regulación vigente (EU AI Act, marcos UNESCO/OECD), principios éticos aplicados y alineación con ODS 4, 10 y 16. Mínimo 10 referencias APA 7ª ed.", rub:"r1"},
+    {n:"Envío Asignación #2 · Portafolio Reflexivo Doctoral con Meta-análisis Crítico + Defensa Oral", tipo:"Sumativa", modo:"Individual", pts:"12% (entrega y presentación Sem. 10)",
+     d:"Portafolio reflexivo doctoral que incluya: (a) síntesis de aprendizajes vinculados a marcos teóricos del curso; (b) análisis de cómo cada proyecto contribuyó a competencias de investigación; (c) mapa conceptual de IA sustentable en educación construido a lo largo del curso; (d) propuesta de línea de investigación doctoral derivada del curso (1 página); (e) reflexión crítica articulada con literatura académica. Formato PDF: Nombre.Apellido.PortafolioDoc.PDF. Defensa oral sincrónica individual (5 min de presentación + Q&A).", rub:"r9d"}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · ~4 h sincrónicas + ~4 h asincrónicas.",
+  video:"Sábados de 10:30 am a 12:00 pm · ~1½ h sincrónica + ~4 h asincrónicas."
+},
+{
+  no:10, chip:"Defensa Doctoral Final", chipPoints:"39%", grade:true,
+  title:"Defensa Académica Doctoral y Evaluación Sumativa Final",
+  description:"Semana de cierre del curso: soporte y seguimiento a la entrega de proyectos y asignaciones, defensa académica de los proyectos doctorales y evaluación sumativa final. Se recibe el Proyecto #3, el Portafolio Reflexivo Doctoral con su defensa oral individual, y se cierra el último foro doctoral.",
+  contenidos:[
+    "Soporte y seguimiento a la entrega de proyectos y asignaciones del curso",
+    "Defensa académica de proyectos doctorales que se indiquen",
+    "Evaluación sumativa final"
+  ],
+  slos:[
+    "Demostrar el aprendizaje del curso a través de la defensa académica de los proyectos.",
+    "Evaluar críticamente el trabajo de pares aplicando criterios de rigor académico.",
+    "Articular una visión integral de la IA sustentable en educación."
+  ],
+  materialesExtra:[],
+  bibliografia:[],
+  actividades:[
+    {n:"Recepción Proyecto #3 Doctoral · Asistente Pedagógico Emocional (Equipo)", tipo:"Sumativa", modo:"Equipo", pts:"22%",
+     d:"Entrega del artículo académico + prototipo del chatbot, cargados en la plataforma.", rub:"r7d"},
+    {n:"Entrega Asignación #2 · Portafolio Reflexivo Doctoral + Defensa Oral", tipo:"Sumativa", modo:"Individual", pts:"12%",
+     d:"Cargar el portafolio en la plataforma y realizar la defensa oral sincrónica individual (sábado 8:30 am).", rub:"r9d"},
+    {n:"Cierre Foro Doctoral #4 · Gobernanza + Ética + Sustentabilidad", tipo:"Sumativa", modo:"Individual", pts:"5%",
+     d:"Cierre y evaluación según Rúbrica R1-FTP Doctoral.", rub:"r1"}
+  ],
+  chat:"Martes y Jueves de 8:00 pm a 10:00 pm · Soporte final de dudas.",
+  video:"Sábado 8:30 am · Defensas orales individuales del Portafolio Reflexivo Doctoral."
+}
+];
+
+const EVAL_PLAN = [
+  {s:1, a:"Foro #1: Presentación, Socialización y Expectativas de IA", m:"Individual", v:"3%"},
+  {s:2, a:"Cierre Foro Doctoral #2: Posicionamiento Epistemológico", m:"Individual", v:"5%"},
+  {s:2, a:"Asignación #0: Conformación de Equipos de Proyectos", m:"Equipo", v:"0%"},
+  {s:2, a:"Práctica Orange #1 (Formativa)", m:"Individual", v:"0%"},
+  {s:4, a:"Cierre Foro Doctoral #3: Revisión Crítica de Literatura sobre LA", m:"Individual", v:"5%"},
+  {s:4, a:"Recepción Asignación #1: Microcertificación SUJIS Analítica", m:"Individual", v:"6%"},
+  {s:4, a:"Práctica Orange #2 (Formativa)", m:"Individual", v:"0%"},
+  {s:5, a:"Práctica Orange #3 (Formativa)", m:"Individual", v:"0%"},
+  {s:6, a:"Recepción Proyecto #1 Doctoral: Estudio Empírico de ML en Educación", m:"Equipo", v:"22%"},
+  {s:8, a:"Recepción Proyecto #2 Doctoral: Intervención Educativa con IA bajo DBR", m:"Equipo", v:"20%"},
+  {s:10, a:"Recepción Proyecto #3 Doctoral: Asistente Pedagógico Emocional Conversacional", m:"Equipo", v:"22%"},
+  {s:10, a:"Entrega Asignación #2: Portafolio Reflexivo Doctoral + Defensa Oral", m:"Individual", v:"12%"},
+  {s:10, a:"Cierre Foro Doctoral #4: Gobernanza + Ética + Sustentabilidad", m:"Individual", v:"5%"}
+];
+
+const GRADE_SCALE = [
+  ["94-100","A"], ["90-93","A–"], ["87-89","B+"], ["84-86","B"], ["80-83","B–"],
+  ["77-79","C+"], ["74-76","C"], ["< 73","F (Reprobado)"], ["—","I (Incompleto)"],
+  ["≥ 84 (Investigación/Tesis/Disertación)","S (Satisfactorio)"], ["< 84 (Investigación/Tesis/Disertación)","U (Insatisfactorio)"],
+  ["Retiro Sem. 2-8","W"], ["Retiro después de Sem. 9 con grado reprobado","WF"]
+];
+
+function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function chipClass(tipo){ return tipo==="Sumativa" ? "cchip sum" : "cchip form"; }
+function modoClass(modo){ return modo==="Equipo" ? "cchip group" : "cchip"; }
+
+function renderMasthead(activeWeek, activeRecursos){
+  let steps = WEEKS.map(w=>{
+    let cls = "pstep";
+    if(activeWeek && w.no < activeWeek) cls += " done";
+    if(activeWeek === w.no) cls += " active";
+    return `<a class="${cls}" href="#/semana-${String(w.no).padStart(2,"0")}" title="Semana ${w.no} · ${esc(w.title)}"><div class="pdot">${w.no}</div><div class="pname">${esc(w.chip)}</div></a>`;
+  }).join("");
+  document.getElementById("masthead-container").innerHTML = `
+    <div class="masthead">
+      <a class="brand" href="#/">
+        <img src="${LOGO_B64}" alt="BIU — Broward International University">
+        <div class="brand-text">
+          <div class="u">VIA7012</div>
+          <div class="name">Introducción a la IA en la Educación Sustentable</div>
+        </div>
+      </a>
+      <nav>
+        <a href="#/" class="${!activeWeek && !activeRecursos ? "on" : ""}">Inicio</a>
+        <a href="#/recursos" class="${activeRecursos ? "on" : ""}">Recursos</a>
+      </nav>
+      <div class="meta">${activeWeek ? `Semana <b>${activeWeek}</b> de 10` : "Doctorado · Concentración en IA"}</div>
+    </div>
+    <div class="phase-wrap"><div class="phase-steps">${steps}</div></div>
+  `;
+}
+
+function renderHome(){
+  renderMasthead(null, false);
+  const chain = WEEKS.map(w=>{
+    const cls = "tl-item" + (w.grade ? " has-grade" : "");
+    return `<a class="${cls}" href="#/semana-${String(w.no).padStart(2,"0")}">
+      <div class="tl-num">${w.no}</div>
+      <div class="tl-body"><div class="tl-chain">${esc(w.chip)}</div><div class="tl-title">${esc(w.title)}</div></div>
+      <div class="tl-right"><span class="points">${esc(w.chipPoints)}</span></div>
+    </a>`;
+  }).join("");
+
+  document.getElementById("app").innerHTML = `
+    <div class="eyebrow">Doctorado en Ciencias de la Educación Virtual · Concentración en IA</div>
+    <h1 class="title">Introducción a la <em>Inteligencia Artificial</em> en la Educación Sustentable</h1>
+    <p class="subtitle">Curso doctoral que introduce, de forma crítica e interdisciplinaria, los fundamentos de la IA aplicada a la educación sustentable: aprendizaje automático y redes neuronales con herramientas gráficas sin código (Orange), IA generativa y LLMs, IA emocional, y gobernanza ética — integrando marcos epistemológicos, la metodología Design-Based Research (DBR) y los ODS 4, 10 y 16 como ejes diferenciadores del nivel doctoral.</p>
+    <div class="cover-chips">
+      <span class="cchip">10 semanas</span>
+      <span class="cchip">3 Proyectos de investigación aplicada (equipo)</span>
+      <span class="cchip">1 Portafolio Doctoral + Defensa Oral</span>
+      <span class="cchip">100 puntos totales</span>
+    </div>
+    <div class="callout callout-navy"><b>Principio rector:</b> el curso incorpora contenidos sobre IA generativa y ML/DL mediante interfaces gráficas sin necesidad de programación, exigiendo además investigación aplicada con revisión de literatura, marco metodológico, evaluación empírica, formato de artículo académico y defensa oral — el estándar propio del nivel doctoral.</div>
+
+    <div class="section-head"><h2>Cadena de evaluación del curso</h2><div class="hr"></div></div>
+    <p class="prose">Cada semana articula un componente del recorrido doctoral. Las semanas con círculo teal cierran o reciben una entrega que suma puntaje a la calificación final.</p>
+    <div class="timeline">${chain}</div>
+
+    <div class="section-head"><h2>Perfil del docente</h2><div class="hr"></div></div>
+    <div class="card">
+      <h3>Dr. Arsenio Pérez</h3>
+      <p>Correo BIU: aperez@professor.biu.us · Sesiones de consulta: martes y jueves de 8:00 pm a 10:00 pm.</p>
+      <p style="margin-top:.75rem">"¡Bienvenidos al curso de Inteligencia Artificial para la Educación Sustentable! Vamos a abrir esta caja de Pandora y adoptarla como un recurso invaluable en nuestro desarrollo profesional, explorando todo el potencial de la IA en sus respectivos campos profesionales."</p>
+    </div>
+
+    <div class="section-head"><h2>Empezar</h2><div class="hr"></div></div>
+    <p class="prose">Si es tu primera vez aquí, comienza por la Semana 1. Si ya avanzaste, usa la barra de progreso o el buscador de semanas en la parte superior.</p>
+    <div class="quicklinks">
+      <a class="btn btn-primary" href="#/semana-01">Ir a la Semana 1 →</a>
+      <a class="btn btn-outline" href="#/recursos">Ver bibliografía y rúbricas</a>
+    </div>
+  `;
+}
+
+function renderActivity(act){
+  return `<div class="activity">
+    <div class="activity-head">
+      <h4>${esc(act.n)}</h4>
+      <span class="points">${esc(act.pts)}</span>
+    </div>
+    <div class="cover-chips">
+      <span class="${chipClass(act.tipo)}">${esc(act.tipo)}</span>
+      <span class="${modoClass(act.modo)}">${esc(act.modo)}</span>
+    </div>
+    <p class="prose">${esc(act.d)}</p>
+    ${act.rub ? `<a class="rubric-ref" href="#/recursos#${act.rub}">Ver rúbrica aplicable →</a>` : ""}
+  </div>`;
+}
+
+function renderWeek(no){
+  const w = WEEKS.find(x=>x.no===no);
+  if(!w) return renderHome();
+  renderMasthead(no, false);
+
+  const contenidos = w.contenidos.map(c=>`<li>${esc(c)}</li>`).join("");
+  const slos = w.slos.map(s=>`<div class="card"><p>${esc(s)}</p></div>`).join("");
+  const actividades = w.actividades.map(renderActivity).join("");
+  const matGlobal = MAT_GLOBAL.map(m=>`<a class="btn btn-outline btn-sm" href="${m.u}" target="_blank" rel="noopener">${esc(m.l)} ↗</a>`).join("");
+  const matExtra = w.materialesExtra.map(m=>`<a class="btn btn-outline btn-sm" href="${m.u}" target="_blank" rel="noopener">${esc(m.l)} ↗</a>`).join("");
+  const biblio = w.bibliografia.length ? `<ul class="biblio">${w.bibliografia.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>` : `<p class="prose">Sin bibliografía específica adicional esta semana; consulte los recursos globales del curso.</p>`;
+
+  const prev = WEEKS.find(x=>x.no===no-1);
+  const next = WEEKS.find(x=>x.no===no+1);
+
+  document.getElementById("app").innerHTML = `
+    <div class="crumbs"><a href="#/">Inicio</a><span class="sep">/</span><span class="here">Semana ${w.no} · ${esc(w.title)}</span></div>
+    <div class="eyebrow">Semana ${w.no} de 10 · ${esc(w.chip)}</div>
+    <h1 class="title">${esc(w.title)}</h1>
+    <p class="subtitle">${esc(w.description)}</p>
+
+    <div class="section-head"><h2>Contenidos de la semana</h2><div class="hr"></div></div>
+    <ul class="biblio">${contenidos}</ul>
+
+    <div class="section-head"><h2>Resultados de aprendizaje (SLO)</h2><div class="hr"></div></div>
+    <div class="grid-2">${slos}</div>
+
+    <div class="section-head"><h2>Actividades de la semana</h2><div class="hr"></div></div>
+    ${actividades}
+
+    <div class="section-head"><h3>Chat de consulta y video clase</h3><div class="hr"></div></div>
+    <div class="grid-2">
+      <div class="card"><h3>Sesión de chat de consulta</h3><p>${esc(w.chat)}</p></div>
+      <div class="card"><h3>Video clase de la semana</h3><p>${esc(w.video)}</p></div>
+    </div>
+
+    <div class="section-head"><h2>Materiales de apoyo</h2><div class="hr"></div></div>
+    <div class="quicklinks">${matGlobal}${matExtra}</div>
+
+    <div class="section-head"><h2>Bibliografía (APA)</h2><div class="hr"></div></div>
+    ${biblio}
+
+    <div class="pager">
+      ${prev ? `<a class="prev" href="#/semana-${String(prev.no).padStart(2,"0")}"><span class="plabel">← Semana ${prev.no}</span><span class="ptitle">${esc(prev.title)}</span></a>` : `<a class="prev" href="#/"><span class="plabel">← Inicio</span><span class="ptitle">Portada del curso</span></a>`}
+      ${next ? `<a class="next" href="#/semana-${String(next.no).padStart(2,"0")}"><span class="plabel">Semana ${next.no} →</span><span class="ptitle">${esc(next.title)}</span></a>` : `<a class="next" href="#/recursos"><span class="plabel">Recursos →</span><span class="ptitle">Bibliografía y rúbricas</span></a>`}
+    </div>
+  `;
+}
+
+function rubricRow(criterio, peso, ex, sa, pm, ina){
+  return `<tr><td><b>${esc(criterio)}</b><br><span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--biu-teal-2)">${esc(peso)}</span></td><td>${esc(ex)}</td><td>${esc(sa)}</td><td>${esc(pm)}</td><td>${esc(ina)}</td></tr>`;
+}
+
+function renderRubricTable(id, title, meta, headerLabels, rows){
+  const metaHtml = meta ? `<div class="rubric-meta">${Object.entries(meta).map(([k,v])=>`<div><b>${esc(k)}</b>${esc(v)}</div>`).join("")}</div>` : "";
+  return `<div id="${id}">
+    <div class="section-head"><h3>${esc(title)}</h3><div class="hr"></div></div>
+    ${metaHtml}
+    <div class="rubric-scroll"><table class="rubric">
+      <thead><tr><th>Criterio / Peso</th><th>Excelente (100%)</th><th>Satisfactorio (80%)</th><th>Puede Mejorar (50%)</th><th>Inadecuado (0%)</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+  </div>`;
+}
+
+function renderRecursos(){
+  renderMasthead(null, true);
+
+  const evalRows = EVAL_PLAN.map(e=>`<tr><td>${e.s}</td><td>${esc(e.a)}</td><td>${esc(e.m)}</td><td><b>${esc(e.v)}</b></td></tr>`).join("");
+  const scaleRows = GRADE_SCALE.map(([r,g])=>`<tr><td>${esc(r)}</td><td><b>${esc(g)}</b></td></tr>`).join("");
+  const matGlobal = MAT_GLOBAL.map(m=>`<a class="btn btn-outline btn-sm" href="${m.u}" target="_blank" rel="noopener">${esc(m.l)} ↗</a>`).join("");
+
+  const r1Rows =
+    rubricRow("Originalidad intelectual","20% del puntaje","Aporta perspectivas originales con fundamentación teórica sólida. No repite lo ya dicho.","Aporta ideas propias que se relacionan con el tema y tienen fundamento.","Repite perspectivas ya emitidas con poca elaboración propia.","No aporta ideas propias. Copia o parafrasea sin análisis.") +
+    rubricRow("Profundidad argumentativa","20% del puntaje","Argumentación profunda con múltiples niveles de análisis y evidencia.","Argumentación clara con evidencia adecuada.","Argumentación superficial sin evidencia suficiente.","Sin argumentación. Solo opiniones sin sustento.") +
+    rubricRow("Uso crítico de fuentes","20% del puntaje","Cita 5+ fuentes académicas APA 7. Integra fuentes críticamente.","Cita 3-4 fuentes. Las integra de forma adecuada.","Cita 1-2 fuentes. Uso decorativo sin análisis.","No cita fuentes académicas.") +
+    rubricRow("Síntesis teórica y aplicación estratégica","20% del puntaje","Sintetiza teorías y las aplica a su contexto profesional con propuestas concretas.","Relaciona teoría con práctica de forma general.","Poca conexión entre teoría y práctica.","No hay relación entre teoría y práctica.") +
+    rubricRow("Interacción doctoral","20% del puntaje","1 posición + 2 réplicas críticas a compañeros, dentro del plazo.","1 posición + 1 réplica dentro del plazo.","Solo 1 posición sin réplicas, fuera de plazo.","No participa en el periodo establecido.");
+
+  const r6dRows =
+    rubricRow("Pregunta de investigación y justificación","10%","Clara, relevante, bien delimitada y justificada con referencia al estado del arte.","—","—","—") +
+    rubricRow("Revisión de literatura (mín. 8 fuentes)","15%","Fuentes académicas actuales, integradas críticamente, formato APA 7.","—","—","—") +
+    rubricRow("Marco metodológico","15%","Tipo de estudio, variables, muestra y procedimiento explícitos y coherentes.","—","—","—") +
+    rubricRow("Modelado ML en Orange (5 fases)","20%","Enmarcado completo: Definir, Set de Datos, Transformar, Entrenar, Validar, Predecir.","—","—","—") +
+    rubricRow("Análisis e interpretación con discusión teórica","15%","Resultados interpretados a la luz del marco teórico. Discusión sustantiva.","—","—","—") +
+    rubricRow("Análisis de equidad/sesgo (ODS 4, 10)","10%","Evaluación explícita de si el modelo reproduce o mitiga desigualdades.","—","—","—") +
+    rubricRow("Reflexión ética + limitaciones + líneas futuras","10%","Reflexión fundamentada. Limitaciones honestas. Líneas de investigación viables.","—","—","—") +
+    rubricRow("Redacción académica y formato","5%","Coherencia argumentativa, APA 7, terminología precisa.","—","—","—");
+
+  const r5dRows =
+    rubricRow("(a) Originalidad del problema educativo","15%","Problema real, original, delimitado y justificado con datos y estado del arte. Necesidad educativa concreta.","Problema real y contextualizado, justificación razonable, evidencia parcial.","Problema genérico o poco contextualizado. Justificación superficial.","Problema no identificado, trivial o ficticio.") +
+    rubricRow("Rigor del marco teórico","20%","Coherente, actualizado, integra críticamente mín. 10 fuentes (2019-2026). APA 7 impecable.","Fundamentado con 7-9 fuentes. Relación adecuada teoría-intervención.","Superficial con 4-6 fuentes. Conexión débil.","Sin marco teórico o menos de 4 fuentes.") +
+    rubricRow("(c) Fidelidad al ciclo DBR completo","20%","5 fases documentadas con rigor y al menos 1 iteración completa.","5 fases identificadas, al menos 4 bien documentadas, evidencia de iteración parcial.","2-3 fases desarrolladas, documentación insuficiente.","No se aplica el enfoque DBR. Proceso lineal sin evaluación.") +
+    rubricRow("(b)(f) Calidad de productos IAG y documentación de prompts","15%","3+ herramientas con propósito claro, prompts documentados, justificación pedagógica, ajustes humanos descritos.","3 herramientas, prompts documentados para la mayoría, justificación general.","2 herramientas o uso superficial, documentación parcial.","Menos de 2 herramientas o uso decorativo.") +
+    rubricRow("(e) Análisis de sustentabilidad (ODS 4, 10, 16)","10%","Análisis profundo de al menos 2 ODS con evidencia concreta de incorporación.","Aborda al menos 2 ODS con conexión razonable.","Mención de ODS sin articulación real.","Sin análisis de sustentabilidad.") +
+    rubricRow("(d) Redacción académica y estructura de artículo","10%","Estructura completa de artículo científico. APA 7 sin errores. Hilo argumentativo sostenido.","Estructura reconocible, redacción clara, APA 7 con errores menores.","Estructura incompleta, problemas de coherencia.","Sin estructura de artículo, redacción deficiente.") +
+    rubricRow("Reflexión crítica, limitaciones y contribución al campo","10%","Reflexión profunda, limitaciones honestas, líneas futuras viables, contribución concreta al campo.","Reflexión presente con limitaciones y líneas futuras, contribución modesta.","Reflexión superficial, limitaciones sin profundidad.","Sin reflexión crítica ni contribución al campo.");
+
+  const r7dRows =
+    rubricRow("(a) Título y justificación","4%","Título preciso. Justificación sólida con datos y evidencia. Vinculación explícita con ODS.","Título adecuado, justificación razonable, vinculación ODS general.","Título genérico, justificación superficial.","Sin título claro, justificación ausente.") +
+    rubricRow("(b) Revisión de literatura sobre affective computing","10%","Mín. 10 fuentes (2019-2026), integración crítica, APA 7 impecable, estado del arte actualizado.","8-9 fuentes relevantes, integración adecuada, APA 7 con errores menores.","5-7 fuentes descriptivas, poco actuales, errores frecuentes.","Menos de 5 fuentes o no académicas.") +
+    rubricRow("(c) Marco teórico del reconocimiento emocional","8%","Coherente y fundamentado (Ekman, Russell, Scherer), conexión clara con el diseño del chatbot.","Fundamento adecuado, modelos reconocidos, conexión razonable.","Superficial, conceptos sin desarrollar.","Sin marco teórico o con conceptos erróneos.") +
+    rubricRow("(d) Descripción técnica: System Prompt y base de conocimiento","10%","System Prompt estructurado (rol, tono, límites, flujo, detección emocional), prototipo funcional demostrado.","Funcional con componentes principales, prototipo operativo básico.","Básico sin flujo emocional claro, prototipo parcial.","Sin System Prompt documentado o no funcional.") +
+    rubricRow("(g) Fases de implementación — ciclo DBR","10%","5 fases evidenciadas y documentadas, al menos 1 iteración completa.","Fases identificadas, al menos 4 de 5 bien descritas, evidencia de iteración.","2-3 fases desarrolladas, documentación insuficiente.","No se aplica DBR, proceso lineal.") +
+    rubricRow("(e) Protocolo de prueba con usuarios reales (mín. 3 sesiones)","12%","Protocolo riguroso, 3+ sesiones verificables, consentimiento informado obtenido.","3 sesiones documentadas, instrumentos básicos, consentimiento obtenido.","2 sesiones o protocolo incompleto.","Menos de 2 sesiones o sin prueba con usuarios.") +
+    rubricRow("(f) Análisis de resultados","10%","Análisis sistemático, categorización cualitativa y/o estadísticas, triangulación de fuentes.","Análisis organizado, categorías identificadas, conexión con teoría.","Descriptivo sin categorización rigurosa.","Sin análisis o puramente anecdótico.") +
+    rubricRow("(h) Discusión ética profunda","10%","Consentimiento, privacidad, límites de la IA afectiva; marcos éticos (UNESCO, OECD); vínculo ODS 16.","Los tres ejes principales presentes, referencias a marcos éticos.","Parcial: 1-2 ejes sin profundidad.","Sin discusión ética o tratamiento trivial.") +
+    rubricRow("(i) Nota reflexiva: precisión científica vs. especulación","8%","Distingue con rigor evidencia validada de promesas no demostradas. Proyección responsable.","Identifica la tensión ciencia/especulación, argumentación razonable.","Superficial, sin distinguir evidencia de especulación.","Sin reflexión o posición acrítica.") +
+    rubricRow("Redacción académica, APA 7 y estructura","8%","Estructura de artículo científico completa, APA 7 sin errores.","Estructura reconocible, APA 7 con errores menores.","Problemas de estructura, errores frecuentes.","Redacción deficiente, sin estructura ni APA.") +
+    rubricRow("Trabajo colaborativo y contribución al campo","5%","Trabajo equitativo evidente, aporta modelo/hallazgo/herramienta original.","Colaboración evidente, contribución modesta.","Poca evidencia de colaboración equitativa.","Sin evidencia de trabajo colaborativo.") +
+    rubricRow("Créditos a IAG utilizada","5%","Declara todas las IAG, para qué se usaron, prompts y ajustes humanos. Transparencia total.","Declara las IAG con descripción general de su uso.","Mención parcial sin detalle.","No declara el uso de IAG.");
+
+  const r9dRows =
+    rubricRow("(a) Síntesis de aprendizajes vinculados a marcos teóricos","20%","Conecta cada tema con marcos teóricos específicos. Apropiación crítica. Mín. 8 referencias.","Vincula temas principales con marcos identificados. 5-7 referencias.","Descriptiva con poca conexión teórica. 3-4 referencias.","Resumen descriptivo sin marcos teóricos.") +
+    rubricRow("(b) Contribución de cada proyecto a competencias de investigación","15%","Análisis específico y documentado de P#1, P#2, P#3 y competencias desarrolladas, con honestidad intelectual.","Análisis con identificación de competencias, reconoce áreas de mejora.","Descripción de lo realizado sin análisis de competencias.","No analiza los proyectos ni su relación con competencias.") +
+    rubricRow("(c) Mapa conceptual de IA sustentable en educación","15%","Original, jerárquico, integra conceptos, ODS 4/10/16, marcos éticos y herramientas. Visión sistémica.","Organizado, conceptos principales conectados a ODS, estructura jerárquica.","Básico, pocos conceptos, sin integración clara de ODS.","Sin mapa conceptual o esquema incoherente.") +
+    rubricRow("(d) Propuesta de línea de investigación doctoral (1 pág.)","10%","Clara, original y viable: título, problema, pregunta(s), objetivo, metodología preliminar, vínculo con ODS.","Problema, pregunta y objetivo identificados, viabilidad parcial.","Vaga: problema poco definido, sin metodología.","Sin propuesta o irrelevante/trivial.") +
+    rubricRow("(e) Reflexión crítica articulada con literatura académica","10%","Articula aprendizajes con debates académicos actuales, cita literatura, identifica tensiones del campo.","Conecta experiencia con algunas lecturas, aprendizajes significativos.","Mayormente personal sin articulación con literatura.","Sin reflexión o texto genérico sin literatura.") +
+    rubricRow("Formato, redacción y presentación del documento","10%","Portada, índice, secciones claras, páginas numeradas, APA 7 sin errores.","Organizado, redacción clara, APA 7 con errores menores.","Estructura parcial, errores frecuentes en APA.","Sin estructura, redacción deficiente, sin APA.") +
+    rubricRow("Claridad y estructura de la presentación oral","10%","Presentación clara y fluida, sintetiza sin leer, buen uso del tiempo, recursos visuales profesionales.","Organizada, temas principales cubiertos, recursos visuales adecuados.","Desorganizada o incompleta, excede el tiempo, lee la mayor parte.","No realiza presentación o no aborda el portafolio.") +
+    rubricRow("Comunicación doctoral y presencia académica","10%","Vocabulario técnico preciso, tono académico, síntesis, contacto visual, identidad emergente de investigador/a.","Comunicación clara, tono profesional, buen manejo de cámara.","Dificultades: vocabulario impreciso, tono informal.","Comunicación deficiente, sin cámara o sin presencia académica.");
+
+  document.getElementById("app").innerHTML = `
+    <div class="crumbs"><a href="#/">Inicio</a><span class="sep">/</span><span class="here">Recursos · Bibliografía y rúbricas</span></div>
+    <div class="eyebrow">Recursos del curso</div>
+    <h1 class="title">Plan de evaluación, escala BIU y rúbricas doctorales</h1>
+    <p class="subtitle">Todo lo que no cambia semana a semana: el desglose completo del 100% del curso, la escala de calificación institucional, las políticas de entrega y honestidad académica, los enlaces globales de apoyo, y las 5 rúbricas doctorales usadas en foros, proyectos y el portafolio final.</p>
+
+    <div class="toc">
+      <a href="#eval">Plan de evaluación</a>
+      <a href="#escala">Escala BIU</a>
+      <a href="#politicas">Políticas</a>
+      <a href="#r1">R1-FTP · Foros</a>
+      <a href="#r6d">R6-D · Proyecto #1</a>
+      <a href="#r5d">R5-D · Proyecto #2</a>
+      <a href="#r7d">R7-D · Proyecto #3</a>
+      <a href="#r9d">R9-D · Portafolio + Defensa</a>
+    </div>
+
+    <div id="eval" class="section-head"><h2>Plan de evaluación del curso (100%)</h2><div class="hr"></div></div>
+    <div class="rubric-scroll"><table class="rubric">
+      <thead><tr><th>Semana</th><th>Actividad</th><th>Modalidad</th><th>Valor</th></tr></thead>
+      <tbody>${evalRows}<tr><td colspan="3" style="text-align:right"><b>TOTAL</b></td><td><b>100%</b></td></tr></tbody>
+    </table></div>
+
+    <div id="escala" class="section-head"><h2>Escala de calificación BIU</h2><div class="hr"></div></div>
+    <div class="rubric-scroll"><table class="rubric">
+      <thead><tr><th>Puntaje acumulado</th><th>Calificación</th></tr></thead>
+      <tbody>${scaleRows}</tbody>
+    </table></div>
+
+    <div id="politicas" class="section-head"><h2>Políticas del curso</h2><div class="hr"></div></div>
+    <div class="callout callout-gold"><b>Trabajos tardíos:</b> preste mucha atención a las fechas límite. No hay repetición de quizzes, exámenes o entregas tardías sin una razón justificada y aprobada por el profesor. Las participaciones tardías en foros se evalúan al 60% del valor original (hasta una semana después del cierre).</div>
+    <div class="callout callout-navy"><b>Honestidad e integridad académica:</b> cualquier forma de deshonestidad académica, incluyendo trampa y plagio, debe ser reportada al Departamento de Asuntos Estudiantiles y al instructor del curso.</div>
+
+    <div class="section-head"><h2>Recursos globales de apoyo</h2><div class="hr"></div></div>
+    <div class="quicklinks">${matGlobal}
+      <a class="btn btn-outline btn-sm" href="https://orangedatamining.com/" target="_blank" rel="noopener">Orange Data Mining ↗</a>
+      <a class="btn btn-outline btn-sm" href="https://docs.orange.biolab.si/" target="_blank" rel="noopener">Documentación de Orange ↗</a>
+      <a class="btn btn-outline btn-sm" href="https://scispace.com/" target="_blank" rel="noopener">SciSpace ↗</a>
+      <a class="btn btn-outline btn-sm" href="https://notebooklm.google.com/" target="_blank" rel="noopener">NotebookLM ↗</a>
+    </div>
+
+    <div class="section-head"><h2>Rúbricas de evaluación doctorales</h2><div class="hr"></div></div>
+    ${renderRubricTable("r1","Rúbrica R1-FTP Doctoral: Evaluación de Foros Doctorales", {"Aplica a":"Foros Doctorales #1-#4", "Entregas tardías":"60% del valor, hasta 1 semana después del cierre"}, null, r1Rows)}
+    ${renderRubricTable("r6d","Rúbrica R6-D: Proyecto #1 Doctoral · Estudio Empírico de ML en Educación", {"Modalidad":"Equipo (3-6 integrantes)","Valor":"22% del curso","Entrega":"Semana 6"}, null, r6dRows)}
+    ${renderRubricTable("r5d","Rúbrica R5-D: Proyecto #2 Doctoral · Intervención Educativa con IA bajo DBR", {"Modalidad":"Equipo (3-6 integrantes)","Valor":"20% del curso","Entrega":"Semana 8","Formato":"Artículo académico (PDF)","ODS":"4, 10, 16"}, null, r5dRows)}
+    ${renderRubricTable("r7d","Rúbrica R7-D: Proyecto #3 Doctoral · Asistente Pedagógico Emocional Conversacional", {"Modalidad":"Equipo (3-6 integrantes)","Valor":"22% del curso","Entrega":"Semana 10","Formato":"Artículo académico + prototipo de chatbot"}, null, r7dRows)}
+    ${renderRubricTable("r9d","Rúbrica R9-D: Asignación #2 · Portafolio Reflexivo Doctoral + Defensa Oral Individual", {"Modalidad":"Individual","Valor":"12% del curso (80% documento + 20% defensa oral)","Entrega":"Semana 10","Formato":"PDF: Nombre.Apellido.PortafolioDoc.PDF + defensa sincrónica (5 min + Q&A)"}, null, r9dRows)}
+
+    <div class="pager">
+      <a class="prev" href="#/semana-10"><span class="plabel">← Semana 10</span><span class="ptitle">Defensa Académica Doctoral y Evaluación Sumativa Final</span></a>
+      <a class="next" href="#/"><span class="plabel">Inicio →</span><span class="ptitle">Portada del curso</span></a>
+    </div>
+  `;
+}
+
+function router(){
+  const hash = location.hash.replace(/^#/,"") || "/";
+  const path = hash.split("#")[0];
+  const anchor = hash.split("#")[1];
+  if(path === "/" || path === ""){ renderHome(); }
+  else if(path === "/recursos"){ renderRecursos(); if(anchor){ setTimeout(()=>{ const el=document.getElementById(anchor); if(el) el.scrollIntoView({behavior:"smooth", block:"start"}); }, 30); } }
+  else {
+    const m = path.match(/semana-(\d+)/);
+    if(m){ renderWeek(parseInt(m[1],10)); }
+    else { renderHome(); }
+  }
+  window.scrollTo(0,0);
+}
+
+window.addEventListener("hashchange", router);
+document.addEventListener("DOMContentLoaded", router);
+router();
+</script>
+</body>
+</html>
