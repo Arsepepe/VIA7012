@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tutor IA VIA7012</title>
+  <meta name="description" content="Acceso al Tutor IA del curso VIA7012 — Introducción a la Inteligencia Artificial en Educación Sustentable.">
+  <style>
+    :root{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111827;background:#f7f8fb}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px}
+    main{width:min(680px,100%);background:#fff;border:1px solid #e5e7eb;border-radius:22px;padding:38px;box-shadow:0 18px 50px rgba(0,0,0,.07)}
+    .tag{font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4f46e5}
+    h1{font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin:.55rem 0}
+    p{font-size:1.06rem;line-height:1.65;color:#4b5563}
+    .course{padding:18px 20px;border-radius:16px;background:#f3f4f6;margin:24px 0}
+    .course strong{display:block;color:#111827}
+    button{width:100%;border:0;border-radius:14px;padding:16px 18px;font-size:1rem;font-weight:750;cursor:pointer;background:#111827;color:white}
+    button[disabled]{cursor:not-allowed;opacity:.55}
+    .status{margin-top:16px;font-size:.93rem;color:#6b7280}
+    .small{font-size:.85rem;color:#9ca3af;margin-top:24px}
+  </style>
+</head>
+<body>
+<main>
+  <div class="tag">VIA7012 · Tutor académico con IA</div>
+  <h1>Doctoral Copilot</h1>
+  <p>Asistente académico del curso para orientación conceptual, Orange Data Mining, Design-Based Research y revisión formativa de proyectos.</p>
+  <div class="course">
+    <strong>VIA7012</strong>
+    Introducción a la Inteligencia Artificial en Educación Sustentable
+  </div>
+  <button id="launch">Abrir Tutor IA</button>
+  <div class="status" id="status">Comprobando disponibilidad del tutor…</div>
+  <div class="small">Este enlace permanecerá estable para Blackboard aunque el servicio de IA sea actualizado.</div>
+</main>
+<script>
+  // Único valor que deberá actualizarse cuando OpenAI entregue
+  // la URL pública definitiva del Plugin.
+  const PLUGIN_PUBLIC_URL = "";
+
+  const button = document.getElementById("launch");
+  const status = document.getElementById("status");
+
+  if (PLUGIN_PUBLIC_URL) {
+    status.textContent = "Tutor disponible.";
+    button.addEventListener("click", () => {
+      window.location.href = PLUGIN_PUBLIC_URL;
+    });
+  } else {
+    button.disabled = true;
+    status.textContent = "El Tutor VIA7012 está preparado y pendiente de publicación pública en OpenAI.";
+  }
+</script>
+</body>
+</html>
