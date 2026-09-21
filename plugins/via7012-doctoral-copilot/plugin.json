@@ -1,0 +1,6 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "via7012-doctoral-copilot",
+  "version": "1.0.0",
+  "description": "Copiloto doctoral para VIA7012: Introducción a la IA en Educación Sustentable. Orienta el aprendizaje, acompaña prácticas con Orange/ML, guía proyectos DBR y ofrece evaluación formativa alineada con el curso."
+}
