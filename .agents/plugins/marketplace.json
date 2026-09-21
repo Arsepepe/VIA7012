@@ -1,0 +1,15 @@
+{
+  "name": "via7012-academic-plugins",
+  "interface": {
+    "displayName": "VIA7012 Academic Plugins"
+  },
+  "plugins": [
+    {
+      "name": "via7012-doctoral-copilot",
+      "source": {
+        "source": "local",
+        "path": "./plugins/via7012-doctoral-copilot"
+      }
+    }
+  ]
+}
